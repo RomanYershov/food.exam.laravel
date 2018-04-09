@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <style>
     .cover{
-        background-color: #00000059;
+        background-color: #00000033;
         height: auto;
         padding: 20px;
         border-radius: 50px;
@@ -12,6 +12,8 @@
         overflow: auto;
         color: wheat;
         text-align: center;
+        color:  #d6e25e;
+        text-shadow: black 2px 2px 7px;
     }
     h1{
         font-weight: bold;
@@ -39,7 +41,7 @@
         {{--<p>{{$comments->text}}</p>--}}
         <form action="/food" method="post">
             {{csrf_field()}}
-            <textarea name="text" id="" cols="50" rows="10" style="background-color: #0909095c" placeholder="Оставить коментарий"></textarea><br>
+            <textarea name="text" id="" cols="50" rows="10" style="background-color: #0909095c" placeholder="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"></textarea><br>
             <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
             <input type="hidden" name="food_id" value="{{$recipe->id}}">
             <input type="hidden" name="name" value="name">

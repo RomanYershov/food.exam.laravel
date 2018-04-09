@@ -20,12 +20,14 @@
 
 <div class="row">
     <div class="col-md-2" style="text-align: center;font-weight: bold">
+
       <div class="categories">
           <p class="category" category_id="0">Все</p>
-          @foreach($cat as $category)
+          @foreach($categories as $category)
               <p class="category" category_id="{{$category->id}}">{{$category->name}}</p>
           @endforeach
       </div>
+
     </div>
     <div class="col-md-10">
         <div class="result">
@@ -66,5 +68,5 @@
         });
     });
 </script>
-
+{{$recipes->links()}}
 @endsection

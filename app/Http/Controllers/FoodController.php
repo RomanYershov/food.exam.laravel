@@ -16,9 +16,9 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $cat=Category::all();
-        $recipes=Food::all();
-       return view('food')->with(compact('recipes', 'category' ,'cat'));
+        $categories=Category::all();
+        $recipes=Food::paginate(6);
+       return view('food')->with(compact('recipes', 'category', 'categories'));
     }
 
     /**
