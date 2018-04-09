@@ -13,7 +13,7 @@
 
 
 
-                    <form action="/admin" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="/admin/store" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
 

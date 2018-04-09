@@ -5,9 +5,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 Food
-                {{--<a href="/employees?lang=en">en</a>--}}
-                {{--<a href="/employees?lang=ru">ru</a>--}}
-                {{--<a href="/employees?lang=kz">kz</a>--}}
             </div>
 
             <div class="panel-body">
@@ -30,7 +27,7 @@
                             <td>{{$recipe->name}}</td>
                             <td>{{$recipe->category->name}} food</td>
                             <td>
-                                <form action="{{url('admin/'.$recipe->id)}}" method="POST">
+                                <form action="{{url('admin/delete/'.$recipe->id)}}" method="POST">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
                                     <button type="submit" class="btn btn-danger">delete</button>
@@ -42,7 +39,9 @@
                         </tr>
                     @endforeach
                    <div class="well">
-                       <a href="/admin/create" class="btn btn-success">Add recipe</a>
+                       <a href="/admin/create" class="btn btn-success">Add Recipe</a>
+                       <a href="/admin/createcategory" class="btn btn-success">Add Category</a>
+                       <a href="/admin/createadmin" class="btn btn-success">Add Admin</a>
                    </div>
                     </tbody>
                 </table>

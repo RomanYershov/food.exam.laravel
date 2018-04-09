@@ -98,7 +98,7 @@
            <div class="cover">
                <div class="content">
                    <div class="title m-b-md">
-                      GOOD FOOD
+                       FOOD
                    </div>
            </div>
             </div>

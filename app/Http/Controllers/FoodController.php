@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Food;
 use App\Category;
+use App\Comment;
 
 class FoodController extends Controller
 {
@@ -16,9 +17,8 @@ class FoodController extends Controller
     public function index()
     {
         $cat=Category::all();
-
         $recipes=Food::all();
-       return view('food')->with(compact('recipes', 'category', 'cat'));
+       return view('food')->with(compact('recipes', 'category' ,'cat'));
     }
 
     /**
@@ -28,7 +28,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -39,7 +39,9 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $comment=new Comment($request->all());
+        $comment->save();
+        return back();
     }
 
     /**

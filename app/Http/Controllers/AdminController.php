@@ -36,7 +36,17 @@ class AdminController extends Controller
        return redirect('/admin');
     }
 
+     public function createcategory()
+     {
+        return view('admin.createCategory');
+     }
 
+    public function addcategory(Request $request)
+    {
+        $category=new Category($request->all());
+        $category->save();
+        return redirect('/admin');
+    }
     public function show($id)
     {
 

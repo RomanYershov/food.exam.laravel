@@ -29,8 +29,18 @@ Route::get('/food', 'FoodController@index')->name('food');
 
 
 Route::group( ["middleware" => "myAdmin"], function (){
-    Route::resource('/admin','AdminController');
+//    Route::resource('/admin','AdminController');
+    Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/create', 'AdminController@create');
+    Route::post('/admin/store', 'AdminController@store');
+    Route::delete('/admin/delete/{id}', 'AdminController@destroy');
+    Route::get('/admin/createcategory', 'AdminController@createcategory');
+    Route::post('/admin/addcategory', 'AdminController@addcategory');
 });
+
+//Route::get('/admin/createcategory',function(){
+//    return view("admin.createCategory");
+//});
 
 Route::resource('/food', 'FoodController');
 Route::get('/food/show/{id}', 'FoodController@show');

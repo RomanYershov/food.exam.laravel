@@ -3,21 +3,32 @@
     .card:hover{
         box-shadow: black 0 0 7px;
     }
+    .category{
+        color: #009688;
+    }
     .category:hover{
         cursor: hand;
+        text-shadow: #969696 0px 4px 7px;
+    }
+    .categories{
+        padding-top: 20px;
+        height: 100%;
+        background-color: #f2dede7d;
     }
 </style>
 @section('content')
 
 <div class="row">
     <div class="col-md-2" style="text-align: center;font-weight: bold">
-        <p class="category" category_id="0">Все</p>
-       @foreach($cat as $category)
-           <p class="category" category_id="{{$category->id}}">{{$category->name}}</p>
-       @endforeach
+      <div class="categories">
+          <p class="category" category_id="0">Все</p>
+          @foreach($cat as $category)
+              <p class="category" category_id="{{$category->id}}">{{$category->name}}</p>
+          @endforeach
+      </div>
     </div>
     <div class="col-md-10">
- <div class="result">
+        <div class="result">
      @foreach($recipes as $recipe)
      <div class="col-md-3" style="margin: 15px;cursor: hand">
          <div class="card well" style="width:220px; background-image: url({{$recipe->image}});
