@@ -56,12 +56,13 @@ class FoodController extends Controller
         return view('showFoods')->with(compact('recipes', 'category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function recipe($id)
+    {
+        $recipe=Food::find($id);
+        return view('recipe')->with(compact('recipe', 'category'));
+    }
+
+
     public function edit($id)
     {
         //

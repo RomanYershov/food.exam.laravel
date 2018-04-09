@@ -16,7 +16,7 @@ class CreateFoodsTable extends Migration
         Schema::create('foods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('recipe');
+            $table->string('recipe',5000);
             $table->integer('category_id')->unsigned();
 //            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('image',100);

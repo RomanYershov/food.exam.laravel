@@ -34,5 +34,6 @@ Route::group( ["middleware" => "myAdmin"], function (){
 
 Route::resource('/food', 'FoodController');
 Route::get('/food/show/{id}', 'FoodController@show');
+Route::get('/recipe/{id}' , 'FoodController@recipe');
 
 
