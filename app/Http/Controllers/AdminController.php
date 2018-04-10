@@ -37,7 +37,6 @@ class AdminController extends Controller
        $recipe=new Food($request->all());
        $name=Storage::put("public/images", $request->file("image"));
        $url=Storage::url($name);
-//        $url= asset('storage/'.$name);
        $recipe->image=$url;
        $recipe->save();
        return redirect('/admin');

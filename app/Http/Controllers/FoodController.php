@@ -42,7 +42,6 @@ class FoodController extends Controller
     {
        $comment=new Comment();
        $comment->user_id=Auth::user()->id;
-       $comment->name="";
        $comment->text=$request->text;
        $comment->food_id=$request->food_id;
         $comment->save();
