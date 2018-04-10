@@ -1,6 +1,6 @@
 @foreach($recipes as $recipe)
     <div class="col-md-3" style="margin: 15px;cursor: hand">
-        <div class="card well" style="width:220px; background-image: url({{$recipe->image}});
+        <div class="card well" style="width:220px; height: 180px; background-image: url({{$recipe->image}});
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-color: #2ab27b">

@@ -65,13 +65,28 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        //
+        $categories=Category::all();
+        $recipe=Food::find($id);
+        return view('admin.editRecipe')->with(compact('recipe','categories'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+      $recipe=Food::find($request->id);
+        $recipe->name=$request->name;
+        $recipe->recipe=$request->recipe;
+        $recipe->category_id=$request->category_id;
+
+      if($request->hasFile('image'))
+      {
+          $name=Storage::put("public/images", $request->file("image"));
+          $url=Storage::url($name);
+          $recipe->image=$url;
+      }
+        $recipe->save();
+
+        return redirect('/admin');
     }
 
 

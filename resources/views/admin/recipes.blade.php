@@ -31,8 +31,7 @@
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
                                     <button type="submit" class="btn btn-danger">delete</button>
-                                    <a href="/admin/{{$recipe->id}}" class="btn btn-info">More</a>
-                                    <a href="/admin/{{$recipe->id}}/edit" class="btn btn-warning">Edit</a>
+                                    <a href="/admin/edit/{{$recipe->id}}" class="btn btn-warning">Edit</a>
                                 </form>
                             </td>
 

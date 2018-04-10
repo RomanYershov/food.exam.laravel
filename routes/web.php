@@ -36,6 +36,8 @@ Route::group( ["middleware" => "myAdmin"], function (){
     Route::delete('/admin/delete/{id}', 'AdminController@destroy');
     Route::get('/admin/createcategory', 'AdminController@createcategory');
     Route::post('/admin/addcategory', 'AdminController@addcategory');
+    Route::get('/admin/edit/{id}','AdminController@edit');
+    Route::put('/admin/update', 'AdminController@update');
 });
 
 //Route::get('/admin/createcategory',function(){

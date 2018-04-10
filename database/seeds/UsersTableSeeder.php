@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'roma.willfame@bk.ru',
             'password' => bcrypt('123456'),
             'role' => 'admin',
-            'image' => 'admin.jpg'
+            'image' => 'http://food:8090/storage/images/p4vIsBYULFYqkV867garxwoILNpxZJ62gtFWeQwg.jpeg'
         ]);
     }
 }
