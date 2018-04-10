@@ -7,7 +7,7 @@
         border-radius: 50px;
         margin: 100px;
         border: 1px solid wheat;
-
+        color: wheat;
     }
     .text{
         overflow: auto;
@@ -41,6 +41,14 @@
 
 </div>
 <div class="cover" style="border-radius: 0px">
+    @if(\Illuminate\Support\Facades\Auth::user())
+        <form class="comment-form" action="/food" method="post">
+            {{csrf_field()}}
+            <textarea name="text" id="" cols="50" rows="5" style="background-color: #0909095c" required maxlength="300" placeholder="Ваш комментарий:"></textarea><br>
+            <input type="hidden" name="food_id" value="{{$recipe->id}}">
+            <input type="submit" class="btn btn-danger" style="float: right">
+        </form>
+    @endif
     <div class="comments text" style="text-align: justify">
         @foreach($recipe->comments as $comment)
             <span  class="badge badge-info">{{$comment->user->email}}</span>
@@ -49,14 +57,7 @@
         @endforeach
         <div class="result"></div>
 
-            @if(\Illuminate\Support\Facades\Auth::user())
-                <form class="comment-form" action="/food" method="post">
-                    {{csrf_field()}}
-                    <textarea name="text" id="" cols="50" rows="5" style="background-color: #0909095c" required maxlength="300" placeholder="Ваш комментарий:"></textarea><br>
-                    <input type="hidden" name="food_id" value="{{$recipe->id}}">
-                    <input type="submit" class="btn btn-success" style="float: right">
-                </form>
-                @endif
+
     </div>
 </div>
 
