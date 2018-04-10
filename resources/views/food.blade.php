@@ -32,7 +32,7 @@
 
       <div class="categories">
           <div class="list-group">
-              <div class="list-group-item list-group-item-success category-item" category_id="0">
+              <div class="list-group-item list-group-item-success  category-item" category_id="0">
                   <span>Все</span>
               </div>
           @foreach($categories as $category)
@@ -77,11 +77,16 @@
 </script>
 <script>
     $(function () {
+        var categoryId = 0;
             $('.category-item').click(function () {
-                  var id = $(this).attr('category_id');
+                var item = $(this);
+                  var id = item.attr('category_id');
                   var url = "/food/show/"+id;
                   $.get(url ,function (data) {
               $('.result').html(data);
+//                      console.log($('.category-item').attr('category_id' , categoryId));
+//              item.addClass('active');
+//                      categoryId = id;
            });
         });
     });

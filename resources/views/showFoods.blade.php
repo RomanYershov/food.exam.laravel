@@ -9,7 +9,7 @@
                    <h4 class="card-title">{{$recipe->category->name}}</h4>
                    <p class="card-text">{{$recipe->name}}</p>
                </div>
-                <a href="recipe/{{$recipe->id}}" class="btn btn-primary">См. Рецепт</a>
+                <a href="recipe/{{$recipe->id}}" class="btn btn-danger">См. Рецепт</a>
             </div>
         </div>
     </div>
