@@ -13,7 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Green-Best-Nature-HD-Wallpapers-PIC-WPD003784-1.jpg");
+                /*background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Green-Best-Nature-HD-Wallpapers-PIC-WPD003784-1.jpg");*/
+                background-image: url("https://images.pexels.com/photos/209371/pexels-photo-209371.jpeg?auto=compress&cs=tinysrgb&h=2600");
                 background-repeat: no-repeat;
                 background-size: cover;
                 color: #636b6f;

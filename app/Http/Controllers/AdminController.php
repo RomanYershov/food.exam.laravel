@@ -27,6 +27,13 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:30',
+            'category_id' => 'required',
+            'image' => 'required',
+            'recipe' => 'required'
+        ]);
+
        $recipe=new Food($request->all());
        $name=Storage::put("public/images", $request->file("image"));
        $url=Storage::url($name);
@@ -43,6 +50,10 @@ class AdminController extends Controller
 
     public function addcategory(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
         $category=new Category($request->all());
         $category->save();
         return redirect('/admin');

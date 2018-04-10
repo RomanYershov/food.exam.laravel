@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Food;
 use App\Category;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -39,9 +40,15 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-       $comment=new Comment($request->all());
+       $comment=new Comment();
+       $comment->user_id=Auth::user()->id;
+       $comment->name="";
+       $comment->text=$request->text;
+       $comment->food_id=$request->food_id;
         $comment->save();
-        return back();
+        $email=Auth::user()->email;
+       return  "<span  class=\"badge badge-info\">$email</span>
+                  <p>~~~ $request->text  ~~~</p>";
     }
 
     /**
@@ -61,7 +68,7 @@ class FoodController extends Controller
     public function recipe($id)
     {
         $recipe=Food::find($id);
-        return view('recipe')->with(compact('recipe', 'category'));
+        return view('recipe')->with(compact('recipe', 'comments'));
     }
 
 

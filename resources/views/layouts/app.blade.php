@@ -13,9 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style=" background-image: url(https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Green-Best-Nature-HD-Wallpapers-PIC-WPD003784-1.jpg);
+<body style=" background-image: url(https://images.pexels.com/photos/315737/pexels-photo-315737.jpeg?auto=compress&cs=tinysrgb&h=2600);
 background-repeat: no-repeat;
-background-size: cover;">
+background-size: cover;
+background-attachment: fixed;">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top" style="background-color: #333">
             <div class="container">

@@ -3,6 +3,10 @@
     .card:hover{
         box-shadow: black 0 0 7px;
     }
+    .card{
+        color: #000;
+        font-weight: bold;
+    }
     .category{
         color: #009688;
     }
@@ -15,6 +19,12 @@
         height: 100%;
         background-color: #f2dede7d;
     }
+    .box{
+        background-color: #737373;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+    }
 </style>
 @section('content')
 
@@ -22,10 +32,19 @@
     <div class="col-md-2" style="text-align: center;font-weight: bold">
 
       <div class="categories">
-          <p class="category" category_id="0">Все</p>
+          <div class="list-group">
+              <div class="list-group-item list-group-item-success">
+                  <span class="category" category_id="0">Все</span>
+              </div>
+
+
           @foreach($categories as $category)
-              <p class="category" category_id="{{$category->id}}">{{$category->name}}</p>
+              <div class="list-group-item list-group-item-warning">
+                  <span class="category" category_id="{{$category->id}}">{{$category->name}}</span>
+              </div>
+
           @endforeach
+          </div>
       </div>
 
     </div>
