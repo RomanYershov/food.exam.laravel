@@ -4,13 +4,12 @@
         box-shadow: black 0 0 7px;
     }
     .card{
-        color: #000;
+        color: #f1d393;
         font-weight: bold;
+        text-shadow: black 5px 4px 7px;
     }
-    .category{
-        color: #009688;
-    }
-    .category:hover{
+
+    .category-item:hover{
         cursor: hand;
         text-shadow: #969696 0px 4px 7px;
     }
@@ -20,10 +19,10 @@
         background-color: #f2dede7d;
     }
     .box{
-        background-color: #737373;
+        background-color: #0e0e0e82;
         padding: 5px;
-        margin: 5px;
-        border-radius: 10px;
+        border-radius: 7px;
+        margin-bottom: 5px;
     }
 </style>
 @section('content')
@@ -33,14 +32,12 @@
 
       <div class="categories">
           <div class="list-group">
-              <div class="list-group-item list-group-item-success">
-                  <span class="category" category_id="0">Все</span>
+              <div class="list-group-item list-group-item-success category-item" category_id="0">
+                  <span>Все</span>
               </div>
-
-
           @foreach($categories as $category)
-              <div class="list-group-item list-group-item-warning">
-                  <span class="category" category_id="{{$category->id}}">{{$category->name}}</span>
+              <div class="list-group-item list-group-item-warning category-item" category_id="{{$category->id}}">
+                  <span>{{$category->name}}</span>
               </div>
 
           @endforeach
@@ -57,9 +54,11 @@
                  background-size: cover;
                  background-color: #2ab27b">
              <div class="card-body">
-             <h4 class="card-title">{{$recipe->category->name}}</h4>
-               <p class="card-text">{{$recipe->name}}</p>
-             <a href="recipe/{{$recipe->id}}" class="btn btn-primary">См. Рецепт</a>
+            <div class="box">
+                <h4 class="card-title">{{$recipe->category->name}}</h4>
+                <p class="card-text">{{$recipe->name}}</p>
+            </div>
+             <a href="recipe/{{$recipe->id}}" class="btn btn-danger">См. Рецепт</a>
              </div>
          </div>
      </div>
@@ -78,7 +77,7 @@
 </script>
 <script>
     $(function () {
-            $('.category').click(function () {
+            $('.category-item').click(function () {
                   var id = $(this).attr('category_id');
                   var url = "/food/show/"+id;
                   $.get(url ,function (data) {

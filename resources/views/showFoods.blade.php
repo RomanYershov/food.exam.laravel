@@ -5,8 +5,10 @@
                 background-size: cover;
                 background-color: #2ab27b">
             <div class="card-body">
-                <h4 class="card-title">{{$recipe->category->name}}</h4>
-                <p class="card-text">{{$recipe->name}}</p>
+               <div class="box">
+                   <h4 class="card-title">{{$recipe->category->name}}</h4>
+                   <p class="card-text">{{$recipe->name}}</p>
+               </div>
                 <a href="recipe/{{$recipe->id}}" class="btn btn-primary">См. Рецепт</a>
             </div>
         </div>
