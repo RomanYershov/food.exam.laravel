@@ -18,6 +18,7 @@
                     <th>Image</th>
                     <th>Name</th>
                     <th>Category</th>
+                    <th>Added</th>
                     </thead>
                     <tbody>
                     @foreach($recipes as $recipe)
@@ -26,6 +27,7 @@
                             <td><img src="{{$recipe->image}}" alt="" height="40px" width="40px"></td>
                             <td>{{$recipe->name}}</td>
                             <td>{{$recipe->category->name}}</td>
+                            <td>{{$recipe->created_at}}</td>
                             <td>
                                 <form action="{{url('admin/delete/'.$recipe->id)}}" method="POST">
                                     {{csrf_field()}}

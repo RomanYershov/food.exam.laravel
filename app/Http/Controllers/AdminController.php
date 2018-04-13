@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Food;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\SubscriptionOnNewRecipe;
+
 
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $recipes=Food::all();
+        $recipes=Food::all()->sortBy('category');
         return view('admin.recipes')->with(compact('recipes','category'));
     }
 
@@ -39,7 +43,26 @@ class AdminController extends Controller
        $url=Storage::url($name);
        $recipe->image=$url;
        $recipe->save();
+
+       $this->sendEmail($recipe);
+
        return redirect('/admin');
+    }
+
+    private function sendEmail($recipe)
+    {
+        $data=array("title" => $recipe->name,
+            "image" => $recipe->image,
+            "recipe_id" => $recipe->id,
+            "date" => $recipe->created_at,
+            "category" => $recipe->category->name);
+
+        $users=User::where('isSign', 1)->get();
+        foreach ($users as $user)
+        {
+            $data['sign_code']=$user->signCode;
+            Mail::to($user->email)->queue(new SubscriptionOnNewRecipe($data));
+        }
     }
 
      public function createcategory()

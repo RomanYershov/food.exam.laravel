@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@list.ru',
             'password' => bcrypt('123456'),
             'role' => 'admin',
-            'image' => 'http://food:8080/storage/images/p4vIsBYULFYqkV867garxwoILNpxZJ62gtFWeQwg.jpeg'
+            'image' => 'http://food:8080/storage/images/p4vIsBYULFYqkV867garxwoILNpxZJ62gtFWeQwg.jpeg',
+            'signCode' => str_random(30)
         ]);
     }
 }

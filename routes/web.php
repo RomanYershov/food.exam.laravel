@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\User;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +39,18 @@ Route::group( ["middleware" => "myAdmin"], function (){
 Route::resource('/food', 'FoodController');
 Route::get('/food/show/{id}', 'FoodController@show');
 Route::get('/recipe/{id}' , 'FoodController@recipe');
+
+Route::get('/user/{sign_code}', function ($sign_code){
+    $user=User::where('signCode', $sign_code)->first();
+    if(!isset($user)) {
+        return  "<span>Вы уже отписаны от рассылки,</span><h3></h3>
+            <p><a href='http://food.loc/'>Перейти на сайт</a></p>";
+    }
+    $user->isSign=0;
+    $user->signCode="";
+    $user->save();
+    return "<span>Вы успешно отписались от рассылки,</span><h3>$user->name</h3>
+            <p><a href='http://food.loc/'>Перейти на сайт</a></p>";
+});
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <style>
     .cover{
-        background-color: #131212c2;
+        background-color: rgba(51, 51, 51, 0.98);
         height: auto;
         padding: 20px;
         border-radius: 50px;
@@ -24,9 +24,10 @@
     }
     .comment{
         padding: 7px;
-        margin-bottom: 5px;
-        border-radius: 10px;
-        background-color: #1b6d855e;;
+        margin-bottom: 15px;
+        /*border-radius: 10px;*/
+        border-bottom: 1px solid wheat;
+        /*background-color: #1b6d855e;*/
     }
     h1{
         font-weight: bold;
@@ -51,7 +52,7 @@
     </div>
 
 </div>
-<div class="cover" style="border-radius: 0px">
+<div class="cover" style="border-radius: 10px 10px 0px 0px;">
     @if(\Illuminate\Support\Facades\Auth::user())
         <form class="comment-form" action="/food" method="post">
             {{csrf_field()}}
@@ -64,9 +65,9 @@
         @foreach($recipe->comments as $comment)
            <div class="comment">
                <ul>
-                   <li  class="badge">{{$comment->user->email}}</li>
+                   <h4 style="text-decoration: underline;color: #2ab27b">{{$comment->user->email}}</h4>
                    <li> {{$comment->text}} </li>
-                   <li>{{$comment->created_at}}</li>
+                   <li class="badge" style="float: right;">{{$comment->created_at}}</li>
                </ul>
            </div>
         @endforeach
