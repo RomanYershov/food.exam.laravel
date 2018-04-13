@@ -15,10 +15,10 @@ class UsersTableSeeder extends Seeder
     {
              DB::table('users')->insert([
             'name' => 'admin',
-            'email' => 'roma.willfame@bk.ru',
+            'email' => 'admin@list.ru',
             'password' => bcrypt('123456'),
             'role' => 'admin',
-            'image' => 'http://food:8090/storage/images/p4vIsBYULFYqkV867garxwoILNpxZJ62gtFWeQwg.jpeg'
+            'image' => 'http://food:8080/storage/images/p4vIsBYULFYqkV867garxwoILNpxZJ62gtFWeQwg.jpeg'
         ]);
     }
 }

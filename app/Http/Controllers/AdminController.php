@@ -97,6 +97,6 @@ class AdminController extends Controller
         {
             $recipe->delete();
         }
-      return back();
+      return back()->withInput();
     }
 }

@@ -1,12 +1,17 @@
 @extends('layouts.app')
 <style>
-    .card:hover{
-        box-shadow: black 0 0 7px;
-    }
     .card{
         color: #f1d393;
         font-weight: bold;
-        text-shadow: black 5px 4px 7px;
+    }
+    .card:hover{
+        box-shadow: black 0 0 7px;transform: scale(1.008);
+    }
+    .box{
+        background-color: #0e0e0e82;
+        padding: 5px;
+        border-radius: 7px;
+        margin-bottom: 5px;
     }
 
     .category-item:hover{
@@ -18,12 +23,7 @@
         height: 100%;
         background-color: #f2dede7d;
     }
-    .box{
-        background-color: #0e0e0e82;
-        padding: 5px;
-        border-radius: 7px;
-        margin-bottom: 5px;
-    }
+
 </style>
 @section('content')
 
@@ -49,7 +49,7 @@
         <div class="result">
      @foreach($recipes as $recipe)
      <div class="col-md-3" style="margin: 15px;cursor: hand">
-         <div class="card well" style="width:220px;height: 180px; background-image: url({{$recipe->image}});
+         <div class="card well" recipe_id="{{$recipe->id}}" style="width:220px;height: 180px;border: none; background-image: url({{$recipe->image}});
                  background-repeat: no-repeat;
                  background-size: cover;
                  background-color: #2ab27b">
@@ -65,31 +65,30 @@
      @endforeach
  </div>
 
-
-
-
     </div>
 </div>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
-</script>
-<script>
-    $(function () {
+{{$recipes->links()}}
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
 //        var categoryId = 0;
             $('.category-item').click(function () {
                 var item = $(this);
-                  var id = item.attr('category_id');
-                  var url = "/food/show/"+id;
-                  $.get(url ,function (data) {
-              $('.result').html(data);
+                var id = item.attr('category_id');
+                var url = "/food/show/";
+                $.get(url ,{id:id},function (data) {
+                    $('.result').html(data);
 //                      console.log($('.category-item').attr('category_id' , categoryId));
 //              item.addClass('active');
 //                      categoryId = id;
-           });
+                });
+            });
+//            $('.card').click(function () {
+//                var recipeId = $(this).attr('recipe_id');
+//                location.href = '/recipe/'+recipeId;
+//            });
         });
-    });
-</script>
-{{$recipes->links()}}
-@endsection
+    </script>
+    @endsection

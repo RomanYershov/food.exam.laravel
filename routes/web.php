@@ -17,19 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/food', 'FoodController@index')->name('food');
-
-//Route::resource('/admin', 'AdminController');
-//Route::get('/admin', 'AdminController@index')->name('admin')->middleware('auth');
-//Route::get('/admin/recipes', 'AdminController@getrecipes' );
-//Route::get('/admin/create', 'AdminController@create')->middleware('auth');
-//Route::post('/admin/store', 'AdminController@store');
-//Route::delete('/admin/{id}', 'AdminController@destroy');
 
 
 
 Route::group( ["middleware" => "myAdmin"], function (){
-//    Route::resource('/admin','AdminController');
     Route::get('/admin', 'AdminController@index');
     Route::get('/admin/create', 'AdminController@create');
     Route::post('/admin/store', 'AdminController@store');
@@ -40,9 +31,7 @@ Route::group( ["middleware" => "myAdmin"], function (){
     Route::put('/admin/update', 'AdminController@update');
 });
 
-//Route::get('/admin/createcategory',function(){
-//    return view("admin.createCategory");
-//});
+
 
 Route::resource('/food', 'FoodController');
 Route::get('/food/show/{id}', 'FoodController@show');

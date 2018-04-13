@@ -25,7 +25,7 @@
                         <tr>
                             <td><img src="{{$recipe->image}}" alt="" height="40px" width="40px"></td>
                             <td>{{$recipe->name}}</td>
-                            <td>{{$recipe->category->name}} food</td>
+                            <td>{{$recipe->category->name}}</td>
                             <td>
                                 <form action="{{url('admin/delete/'.$recipe->id)}}" method="POST">
                                     {{csrf_field()}}
@@ -49,6 +49,5 @@
 
     </div>
     </div>
-    {{--{{$employees->links()}}--}}
 @endsection
 

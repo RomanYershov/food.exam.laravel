@@ -46,28 +46,37 @@ class FoodController extends Controller
        $comment->food_id=$request->food_id;
         $comment->save();
         $email=Auth::user()->email;
-       return  "<span  class=\"badge badge-info\">$email</span>
-                  <p>~~~ $request->text  ~~~</p>";
+        $date=$comment->created_at;
+       return  "<div class=\"comment\">
+                     <ul>
+                          <li  class=\"badge\">$email</li>
+                          <li> $request->text </li>
+                          <li>$date</li>
+                     </ul>
+               </div>";
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Request $request)
     {
-        $recipes=($id==0)
-            ?Food::all()
-            :Food::where('category_id','=',$id)->get();
-        return view('showFoods')->with(compact('recipes', 'category'));
+        if($request->ajax())
+        {
+                $recipes=($request->id==0)
+                ?Food::all()
+                :Food::where('category_id','=',$request->id)->get();
+            return view('showFoods')->with(compact('recipes', 'category'));
+        }
+        return back();
     }
 
     public function recipe($id)
     {
         $recipe=Food::find($id);
-        return view('recipe')->with(compact('recipe', 'comments'));
+        if($recipe){
+            return view('recipe')->with(compact('recipe', 'comments'));
+        }
+        return redirect('food');
+
     }
 
 
@@ -76,24 +85,13 @@ class FoodController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

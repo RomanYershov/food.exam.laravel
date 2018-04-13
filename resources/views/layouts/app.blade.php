@@ -14,11 +14,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body style=" background-image: url(https://images.pexels.com/photos/315737/pexels-photo-315737.jpeg?auto=compress&cs=tinysrgb&h=2600);
-background-repeat: no-repeat;
+background-repeat: no-repeat;{{--https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&h=350--}}
 background-size: cover;
-background-attachment: fixed;">
+background-attachment: fixed">
+
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="background-color: #333">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color:#333333bf">
             <div class="container">
                 <div class="navbar-header">
 
@@ -80,5 +81,6 @@ background-attachment: fixed;">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+        @yield('scripts')
 </body>
 </html>

@@ -12,12 +12,21 @@
     .text{
         overflow: auto;
         color: wheat;
-        text-align: center;
+        text-align: justify;
         /*color:  #d6e25e;*/
-        text-shadow: black 2px 2px 7px;
+        /*text-shadow: black 2px 2px 7px;*/
     }
     .text img{
         float: right;
+    }
+    .comments{
+        /*border: 1px solid wheat;*/
+    }
+    .comment{
+        padding: 7px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        background-color: #1b6d855e;;
     }
     h1{
         font-weight: bold;
@@ -34,9 +43,11 @@
     <div class="text">
         <h1>{{$recipe->name}}</h1>
         <img src="{{$recipe->image}}" alt="" class="img-thumbnail">
+          <ul>
        @foreach(preg_split('/[\r\n]+/', $recipe->recipe) as $row)
-           <span>{{$row}}</span><br>
+           <li><strong>{{$row}}</strong></li>
            @endforeach
+          </ul>
     </div>
 
 </div>
@@ -44,51 +55,46 @@
     @if(\Illuminate\Support\Facades\Auth::user())
         <form class="comment-form" action="/food" method="post">
             {{csrf_field()}}
-            <textarea name="text" id="" cols="50" rows="5" style="background-color: #0909095c" required maxlength="300" placeholder="Ваш комментарий:"></textarea><br>
+            <textarea name="text" id="" cols="80" rows="5" style="background-color: #0909095c" required maxlength="400" placeholder="Ваш комментарий:"></textarea><br>
             <input type="hidden" name="food_id" value="{{$recipe->id}}">
-            <input type="submit" class="btn btn-danger" style="float: right">
+            <input type="submit" class="btn btn-danger" >
         </form>
     @endif
-    <div class="comments text" style="text-align: justify">
+    <div class="comments text" >
         @foreach($recipe->comments as $comment)
-            <span  class="badge badge-info">{{$comment->user->email}}</span>
-      <p>~~~ {{$comment->text}} ~~~</p>
-
+           <div class="comment">
+               <ul>
+                   <li  class="badge">{{$comment->user->email}}</li>
+                   <li> {{$comment->text}} </li>
+                   <li>{{$comment->created_at}}</li>
+               </ul>
+           </div>
         @endforeach
-        <div class="result"></div>
-
-
     </div>
 </div>
+    @endsection
 
+@section('scripts')
+    <script>
+        $(function () {
+            $('.comment-form').submit(function () {
+                var that=$(this);
+                var text = that[0][1].value;
+                var food_id = that[0][2].value;
+                var csrf_token = $('meta[name="csrf-token"]').attr('content');
+                var url=($(this).attr("action"));
 
-<script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
-</script>
-<script>
-    $(function () {
-       $('.comment-form').submit(function () {
-           var that=$(this);
-           var text = that[0][1].value;
-           var food_id = that[0][2].value;
-           var csrf_token = $('meta[name="csrf-token"]').attr('content');
-           var url=($(this).attr("action"));
-
-          $.ajax({
-              url:url,
-              type:'POST',
-              data:{"text":text,"food_id":food_id,"_token":csrf_token},
-              success:function (res) {
-                 $('.result').html($('.result').html()+res);
-                 $('textarea').val("");
-              }
-          });
-
-
-           return false;
-       });
-    });
-</script>
+                $.ajax({
+                    url:url,
+                    type:'POST',
+                    data:{"text":text,"food_id":food_id,"_token":csrf_token},
+                    success:function (res) {
+                        $('.comments').append(res);
+                        $('textarea').val("");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
     @endsection
