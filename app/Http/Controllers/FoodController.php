@@ -7,6 +7,7 @@ use App\Food;
 use App\Category;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class FoodController extends Controller
 {
@@ -79,6 +80,19 @@ class FoodController extends Controller
 
     }
 
+    public function signOff($sign_code)
+    {
+        $user=User::where('signCode', $sign_code)->first();
+        if(!isset($user)) {
+            return  "<span>Вы уже отписаны от рассылки,</span><h3></h3>
+            <p><a href='http://food.loc/'>Перейти на сайт</a></p>";
+        }
+        $user->isSign=0;
+        $user->signCode=null;
+        $user->save();
+        return "<span>Вы успешно отписались от рассылки,</span><h3>$user->name</h3>
+            <p><a href='http://food.loc/'>Перейти на сайт</a></p>";
+    }
 
     public function edit($id)
     {

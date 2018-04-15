@@ -61,6 +61,7 @@ class AdminController extends Controller
         foreach ($users as $user)
         {
             $data['sign_code']=$user->signCode;
+            $data['user_name']=$user->name;
             Mail::to($user->email)->queue(new SubscriptionOnNewRecipe($data));
         }
     }

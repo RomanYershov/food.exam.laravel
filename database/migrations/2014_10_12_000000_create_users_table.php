@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role')->default('user');
             $table->string('image', 100);
-            $table->boolean('isSign')->default(0);
-            $table->string('signCode', 30);
+            $table->boolean('isSign')->default(1);
+            $table->string('signCode', 30)->nullable();
+//            $table->boolean('isActivate')->default(0);
+//            $table->string('activateCode')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

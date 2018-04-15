@@ -17,6 +17,7 @@
         /*text-shadow: black 2px 2px 7px;*/
     }
     .text img{
+        margin: 12px;
         float: right;
     }
     .comments{

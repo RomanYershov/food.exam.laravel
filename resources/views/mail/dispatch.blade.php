@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="content">
+    <h1>Дорогой(ая) {{$data['user_name']}}</h1>
     <p>Предлагаем вашему вниманию новый рецепт:</p>
     <h1>
         <a href="http://food.loc/recipe/{{$data['recipe_id']}}">{{$data['category']}}/{{$data['title']}}</a>
@@ -16,7 +17,7 @@
     <p>Будьте здоровы!!!</p>
 
     <p>опубликованно: {{$data['date']}}</p>
-    <p><a href="http://food.loc/user/{{$data['sign_code']}}">Отписаться от рассылки</a></p>
+    <p><a href="http://food.loc/signoff/{{$data['sign_code']}}">Отписаться от рассылки</a></p>
 </div>
 <style>
     .content{
