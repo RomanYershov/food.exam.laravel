@@ -19,7 +19,7 @@ class FoodController extends Controller
     public function index()
     {
         $categories=Category::all();
-        $recipes=Food::paginate(6);
+        $recipes=Food::paginate(10);
        return view('food')->with(compact('recipes', 'category', 'categories'));
     }
 
@@ -45,16 +45,14 @@ class FoodController extends Controller
        $comment->user_id=Auth::user()->id;
        $comment->text=$request->text;
        $comment->food_id=$request->food_id;
-        $comment->save();
-        $email=Auth::user()->email;
-        $date=$comment->created_at;
-       return  "<div class=\"comment\">
-                     <ul>
-                          <li  class=\"badge\">$email</li>
-                          <li> $request->text </li>
-                          <li>$date</li>
-                     </ul>
-               </div>";
+       $comment->code=str_random(7);
+       $comment->save();
+       $data = array('date' => $comment->created_at,
+                     'email' => Auth::user()->email,
+                     'text'=>$comment->text,
+                     'user_id' => $comment->user_id,
+                     'code' => $comment->code);
+       return  view('comment')->with(compact('data'));
     }
 
 
@@ -106,9 +104,12 @@ class FoodController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($code)
     {
-        //
+       $comment=Comment::where('code', $code)->first();
+       if($comment)
+       $comment->delete();
+       return back();
     }
 
 

@@ -54,8 +54,8 @@
                         <div class="list-group-item list-group-item-warning category-item" category_id="{{$category->id}}">
                             <span>{{$category->name}}</span><i class="fas fa-arrow-circle-right"></i>
                         </div>
-
                     @endforeach
+                    {{$recipes->links()}}
                 </div>
             </div>
 
@@ -65,16 +65,15 @@
             <div class="result">
                 @foreach($recipes as $recipe)
                     <div class="col-md-3 well card" recipe_id="{{$recipe->id}}"
-                         style="width:180px;
-                                 height: 220px;
+                         style="width:13em;
+                                 height: 240px;
                                  margin: 10px;
                                  cursor: hand;
                                  border: none;
                                  background-image: url({{$recipe->image}});
                                  background-repeat: no-repeat;
                                  background-size: cover;
-                                 background-color: #2ab27b;">
-
+                                 background-color: #fcf8e3;">
                         <div class="card-body">
                             <div class="box">
                                 <h4 class="card-title">{{$recipe->category->name}}</h4>
@@ -87,7 +86,7 @@
             </div>
         </div>
     </div>
-    {{$recipes->links()}}
+
     @endsection
 
 

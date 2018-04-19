@@ -41,6 +41,7 @@ Route::get('/food/show/{id}', 'FoodController@show');
 Route::get('/recipe/{id}' , 'FoodController@recipe');
 
 Route::get('/signoff/{sign_code}', 'FoodController@signOff');
+Route::get('/delete/{code}', 'FoodController@destroy');
 
 //Route::get('/user/{sign_code}', function ($sign_code){
 //    $user=User::where('signCode', $sign_code)->first();

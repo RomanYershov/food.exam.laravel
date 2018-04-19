@@ -1,8 +1,8 @@
 
 @foreach($recipes as $recipe)
     <div class="col-md-3 well card" recipe_id="{{$recipe->id}}"
-         style="width:180px;
-                height: 220px;
+         style="width:13em;
+                height: 240px;
                 border: none;
                 margin: 10px;
                 cursor: hand;

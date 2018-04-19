@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 <style>
     .cover{
@@ -57,7 +59,7 @@
     @if(\Illuminate\Support\Facades\Auth::user())
         <form class="comment-form" action="/food" method="post">
             {{csrf_field()}}
-            <textarea name="text" id="" cols="80" rows="5" style="background-color: #0909095c" required maxlength="400" placeholder="Ваш комментарий:"></textarea><br>
+            <textarea name="text" id="" cols="80" rows="5" style="background-color: #0909095c" required maxlength="1500" placeholder="Ваш комментарий:"></textarea><br>
             <input type="hidden" name="food_id" value="{{$recipe->id}}">
             <input type="submit" class="btn btn-danger" >
         </form>
@@ -65,12 +67,17 @@
     <div class="comments text" >
         @foreach($recipe->comments as $comment)
            <div class="comment">
-               <ul>
-                   <h4 style="text-decoration: underline;color: #2ab27b">{{$comment->user->email}}</h4>
-                   <li> {{$comment->text}} </li>
-                   <li class="badge" style="float: right;">{{$comment->created_at}}</li>
-               </ul>
-           </div>
+                <ul>
+                    <h4 style="text-decoration: underline;color: #2ab27b">{{$comment->user->email}}</h4>
+                    <li> {{$comment->text}} <i class="fas fa-comment-dots"></i> </li>
+                    <li  style="float: right;">{{$comment->created_at}}
+                        @if(\Illuminate\Support\Facades\Auth::user() && $comment->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+                            <a style="font-size:15px;" href="/delete/{{$comment->code}}" ><i class="fas fa-trash-alt"></i></a>
+                        @endif
+                    </li>
+                </ul>
+
+            </div>
         @endforeach
     </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsSignSignCodeToTableUsers extends Migration
+class AddCodeForTableComments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class AddIsSignSignCodeToTableUsers extends Migration
      */
     public function up()
     {
-
+        Schema::table('comments', function($table)
+        {
+            $table->string('code', 7)->nullable();
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class AddIsSignSignCodeToTableUsers extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('comments');
     }
 }
