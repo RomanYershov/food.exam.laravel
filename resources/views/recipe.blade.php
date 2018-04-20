@@ -3,8 +3,10 @@
 @extends('layouts.app')
 <style>
     .cover{
-        background-color: rgba(51, 51, 51, 0.98);
+        background-color: rgba(12, 11, 12, 0.55);
+        /*background-color: rgba(0, 150, 136, 0.72);*/
         height: 100%;
+        width: 70%;
         padding: 20px;
         border-radius: 0px;
         margin: 0px 200px 0px 200px;
@@ -20,12 +22,15 @@
         overflow: auto;
     }
     .text{
-        color: wheat;
+        color: #FFD490;
         text-align: justify;
+        /*font-style: italic;*/
         /*color:  #d6e25e;*/
         /*text-shadow: black 2px 2px 7px;*/
     }
     .text img{
+        width: 40%;
+        height: 40%;
         margin: 12px;
         float: right;
     }
@@ -46,6 +51,7 @@
         font-weight: bold;
         font-style: italic;
         margin: 0px;
+        text-decoration: underline;
     }
     span{
         float: left;

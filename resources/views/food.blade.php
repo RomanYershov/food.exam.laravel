@@ -37,14 +37,19 @@
         height: 100%;
         background-color: #f2dede7d;
     }
-
+    .hidden-recipe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        background-color: #737373;
+    }
 </style>
 @section('content')
 
-
+    {{--<div class="hidden-recipe"> </div>--}}
     <div class="row">
         <div class="col-md-2" style="text-align: center;font-weight: bold;">
-
             <div class="categories">
                 <div class="list-group">
                     <div class="list-group-item list-group-item-success  category-item" category_id="0">
@@ -58,33 +63,34 @@
                     {{$recipes->links()}}
                 </div>
             </div>
-
         </div>
 
-        <div class="col-md-10" style="display: flex">
-            <div class="result">
-                @foreach($recipes as $recipe)
-                    <div class="col-md-3 well card" recipe_id="{{$recipe->id}}"
-                         style="width:13em;
-                                 height: 240px;
-                                 margin: 10px;
-                                 cursor: hand;
-                                 border: none;
-                                 background-image: url({{$recipe->image}});
-                                 background-repeat: no-repeat;
-                                 background-size: cover;
-                                 background-color: #fcf8e3;">
-                        <div class="card-body">
-                            <div class="box">
-                                <h4 class="card-title">{{$recipe->category->name}}</h4>
-                                <p class="card-text">{{$recipe->name}}</p>
-                            </div>
-                            <a href="recipe/{{$recipe->id}}" style="display: block" class="btn btn-danger">См. Рецепт</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+
+          <div class="col-md-10" style="display: flex">
+              <div class="result">
+                  @foreach($recipes as $recipe)
+                      <div class="col-md-3 well card" recipe_id="{{$recipe->id}}"
+                           style="width:13em;
+                                   height: 240px;
+                                   margin: 10px;
+                                   cursor: hand;
+                                   border: none;
+                                   background-image: url({{$recipe->image}});
+                                   background-repeat: no-repeat;
+                                   background-size: cover;
+                                   background-color: #fcf8e3;">
+                          <div class="card-body">
+                              <div class="box">
+                                  <h4 class="card-title">{{$recipe->category->name}}</h4>
+                                  <p class="card-text">{{$recipe->name}}</p>
+                              </div>
+                              <a href="recipe/{{$recipe->id}}" style="display: block" class="btn btn-danger">См. Рецепт</a>
+                          </div>
+                      </div>
+                  @endforeach
+              </div>
+          </div>
+
     </div>
 
     @endsection
